@@ -1,9 +1,12 @@
 import tkinter as tk
 
+from interface.base import BaseInput
 
-class FunctionInput:
+
+class FunctionInput(BaseInput):
     def __init__(self) -> None:
         self.value = None
+        self.pretty_value = None
         self.root = tk.Tk()
         self.root.title("Math Function Input")
 
@@ -16,17 +19,10 @@ class FunctionInput:
         self.entry.pack()
 
         # Submit button
-        self.button = tk.Button(self.root, text="Enter", command=self.evaluate_expression)
+        self.button = tk.Button(self.root, text="Enter", command=self.get_expression)
         self.button.pack()
         self.root.mainloop()
 
-    def evaluate_expression(self) -> str:
-        expression = self.entry.get()
-        expression = (
-            expression.replace("^", "**")
-            .replace("sin", "np.sin")
-            .replace("cos", "np.cos")
-            .replace("e ^ x", "np.exp(x)")
-            .replace("log", "np.log")
-        )
-        self.value = expression
+    def get_expression(self) -> str:
+        self.pretty_value = self.entry.get()
+        self.value = self.evaluate_expression(self.pretty_value)

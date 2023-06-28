@@ -1,6 +1,6 @@
 from core.drawer import Drawer
-from core.input import FunctionInput
-from core.examples_generator import MathFunctionGenerator
+from interface.ui import FunctionInput
+from interface.examples_generator import MathFunctionGenerator
 import argparse
 
 
@@ -10,9 +10,11 @@ class CommandManager:
         if not self.is_example:
             function_input = FunctionInput()
             self.function = function_input.value
+            self.pretty_value = function_input.pretty_value
         else:
             generator = MathFunctionGenerator()
             self.function = generator.get_random_function()
+            self.pretty_value = generator.pretty_value
         self.drawer = Drawer()
 
     def get_args(self):
@@ -22,7 +24,7 @@ class CommandManager:
         return args.example
 
     def run(self):
-        self.drawer.set_function(function_input=self.function)
+        self.drawer.set_function(function_input=self.function, pretty_value=self.pretty_value)
         self.drawer.plot_function()
 
 
