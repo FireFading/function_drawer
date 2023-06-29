@@ -1,7 +1,8 @@
-from core.drawer import Drawer
-from interface.ui import FunctionInput
-from interface.examples_generator import MathFunctionGenerator
 import argparse
+
+from core.drawer import Drawer
+from interface.examples_generator import MathFunctionGenerator
+from interface.ui import FunctionInput
 
 
 class CommandManager:
@@ -18,8 +19,13 @@ class CommandManager:
         self.drawer = Drawer()
 
     def get_args(self):
-        parser = argparse.ArgumentParser(description='Math Function Drawer')
-        parser.add_argument("--example", "-e", action='store_true', help="Run program with random function example")
+        parser = argparse.ArgumentParser(description="Math Function Drawer")
+        parser.add_argument(
+            "--example",
+            "-e",
+            action="store_true",
+            help="Run program with random function example",
+        )
         args = parser.parse_args()
         return args.example
 

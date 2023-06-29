@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
+
 from interface.base import BaseInput
+
 
 class FunctionInput(BaseInput):
     def __init__(self) -> None:
